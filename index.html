@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScieCraft | School Crossplay Server</title>
+    <style>
+        :root {
+            --primary: #2ecc71;
+            --bg-dark: #1a1a2e;
+            --bg-card: #16213e;
+            --text-light: #e94560;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(22, 33, 62, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.9)), 
+                        url('https://picsum.photos/1920/1080?nature') center/cover;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* IP Cards Section */
+        .join-section {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .join-section h2 {
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            width: 350px;
+            border-top: 4px solid var(--primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .ip-box {
+            background-color: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin: 15px 0;
+            user-select: all;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .ip-box:hover {
+            border-color: var(--primary);
+        }
+
+        /* Rules Section */
+        .rules {
+            background-color: var(--bg-card);
+            padding: 60px 5%;
+        }
+
+        .rules-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rules h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .rules ul {
+            list-style-position: inside;
+            margin-left: 20px;
+        }
+
+        .rules li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0f0f1a;
+            margin-top: 40px;
+        }
+
+        .copy-btn {
+            background-color: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ScieCraft</div>
+    </nav>
+
+    <header class="hero">
+        <h1>Welcome to ScieCraft</h1>
+        <p>The official crossplay Minecraft network for our school. Play together on Java or Bedrock, anytime, anywhere.</p>
+    </header>
+
+    <section class="join-section" id="join">
+        <h2>How to Connect</h2>
+        <div class="card-container">
+            <div class="card">
+                <h3>Java Edition</h3>
+                <p>Playing on PC, Mac, or Linux? Use this IP to connect directly.</p>
+                <div class="ip-box" id="java-ip">play.sciecraft.edu</div>
+                <button class="copy-btn" onclick="copyText('java-ip')">Copy IP</button>
+            </div>
+
+            <div class="card">
+                <h3>Bedrock Edition</h3>
+                <p>Playing on Xbox, PlayStation, Switch, or Mobile? You'll need the IP and Port.</p>
+                <div class="ip-box" id="bedrock-ip">IP: bedrock.sciecraft.edu<br>Port: 19132</div>
+                <button class="copy-btn" onclick="copyText('bedrock-ip')">Copy Info</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="rules">
+        <div class="rules-content">
+            <h2>Server Guidelines</h2>
+            <ul>
+                <li><strong>Respect Everyone:</strong> Treat your fellow schoolmates with respect. No harassment, bullying, or hate speech.</li>
+                <li><strong>No Griefing:</strong> Do not destroy or modify builds that do not belong to you without permission.</li>
+                <li><strong>No Cheating:</strong> The use of hacked clients, x-ray mods, or exploits to gain an unfair advantage is strictly prohibited.</li>
+                <li><strong>Keep it School-Appropriate:</strong> Chat and builds must remain appropriate for a school environment.</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 ScieCraft Network. Maintained by the Student Administration.</p>
+    </footer>
+
+    <script>
+        function copyText(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText.replace("IP: ", "").replace("\nPort: ", ":");
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert("IP copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+    </script>
+</body>
+</html>
