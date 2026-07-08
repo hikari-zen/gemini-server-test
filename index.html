@@ -3,223 +3,285 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScieCraft | School Crossplay Server</title>
+    <title>ScieCraft | Premium Crossplay Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2ecc71;
-            --bg-dark: #1a1a2e;
-            --bg-card: #16213e;
-            --text-light: #e94560;
-            --white: #ffffff;
+            --primary: #f9d976; /* The yellowish-gold color */
+            --primary-hover: #e0c060;
+            --text-light: #ffffff;
+            --text-muted: #cccccc;
+            --bg-nav: rgba(20, 20, 25, 0.7);
+            --bg-overlay: rgba(0, 0, 0, 0.6);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--white);
-            line-height: 1.6;
+            /* Replace the URL with a screenshot of your actual Minecraft server */
+            background: linear-gradient(var(--bg-overlay), var(--bg-overlay)), 
+                        url('https://images.unsplash.com/photo-1607513746994-51f730a44832?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat fixed;
+            color: var(--text-light);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
+        /* --- Navigation Bar --- */
         nav {
-            background-color: rgba(22, 33, 62, 0.95);
-            padding: 1rem 5%;
+            background-color: var(--bg-nav);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Simulating the cherry blossom icon from the reference */
+        .nav-logo::before {
+            content: '🌸'; 
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
             color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 2px;
         }
 
-        /* Hero Section */
+        .nav-btn {
+            background-color: var(--primary);
+            color: #111;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .nav-btn:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        /* --- Hero Section --- */
         .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(26, 26, 46, 0.8), rgba(26, 26, 46, 0.9)), 
-                        url('https://picsum.photos/1920/1080?nature') center/cover;
+            padding: 0 20px;
+            margin-top: 60px; /* Offset for fixed nav */
+        }
+
+        /* The large play button icon */
+        .play-icon-container {
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .play-icon-container:hover {
+            transform: scale(1.1);
+        }
+
+        .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .play-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: white;
+            margin-left: 5px; /* Optically center the play triangle */
         }
 
         .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--primary);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
         }
 
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* IP Cards Section */
-        .join-section {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .join-section h2 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
             margin-bottom: 40px;
-            font-size: 2.5rem;
+            line-height: 1.6;
         }
 
-        .card-container {
+        /* --- Button Group --- */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 35px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #111;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-light);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--text-light);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- Floating Scroll Arrow --- */
+        .scroll-down {
+            position: fixed;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
             display: flex;
             justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: var(--bg-card);
-            padding: 30px;
-            border-radius: 10px;
-            width: 350px;
-            border-top: 4px solid var(--primary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        .ip-box {
-            background-color: rgba(0,0,0,0.3);
-            padding: 15px;
-            border-radius: 5px;
-            font-family: monospace;
-            font-size: 1.2rem;
-            margin: 15px 0;
-            user-select: all;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             cursor: pointer;
-            border: 1px solid #333;
-        }
-
-        .ip-box:hover {
-            border-color: var(--primary);
-        }
-
-        /* Rules Section */
-        .rules {
-            background-color: var(--bg-card);
-            padding: 60px 5%;
-        }
-
-        .rules-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .rules h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .rules ul {
-            list-style-position: inside;
-            margin-left: 20px;
-        }
-
-        .rules li {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #0f0f1a;
-            margin-top: 40px;
-        }
-
-        .copy-btn {
-            background-color: var(--primary);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
             transition: background 0.3s;
         }
 
-        .copy-btn:hover {
-            background-color: #27ae60;
+        .scroll-down:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Hide links on mobile for simplicity */
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .scroll-down {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ScieCraft</div>
+        <div class="nav-logo">ScieCraft</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#owners">Owners</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#team">Team</a></li>
+        </ul>
+        <a href="#play" class="nav-btn">Play with us</a>
     </nav>
 
-    <header class="hero">
+    <section class="hero">
+        
+        <div class="play-icon-container">
+            <div class="play-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>
+            </div>
+        </div>
+
         <h1>Welcome to ScieCraft</h1>
-        <p>The official crossplay Minecraft network for our school. Play together on Java or Bedrock, anytime, anywhere.</p>
-    </header>
+        <p>
+            Adventure awaits on ScieCraft, a modern Minecraft server built for our school. 
+            Build, explore, and conquer unique worlds with friends while enjoying a smooth crossplay experience on Java and Bedrock.
+        </p>
 
-    <section class="join-section" id="join">
-        <h2>How to Connect</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>Java Edition</h3>
-                <p>Playing on PC, Mac, or Linux? Use this IP to connect directly.</p>
-                <div class="ip-box" id="java-ip">play.sciecraft.edu</div>
-                <button class="copy-btn" onclick="copyText('java-ip')">Copy IP</button>
-            </div>
-
-            <div class="card">
-                <h3>Bedrock Edition</h3>
-                <p>Playing on Xbox, PlayStation, Switch, or Mobile? You'll need the IP and Port.</p>
-                <div class="ip-box" id="bedrock-ip">IP: bedrock.sciecraft.edu<br>Port: 19132</div>
-                <button class="copy-btn" onclick="copyText('bedrock-ip')">Copy Info</button>
-            </div>
+        <div class="btn-group">
+            <a href="#join" class="btn btn-primary" onclick="copyIP()">Play Now</a>
+            <a href="#features" class="btn btn-outline">Features</a>
+            <a href="#rules" class="btn btn-outline">Rules</a>
         </div>
     </section>
 
-    <section class="rules">
-        <div class="rules-content">
-            <h2>Server Guidelines</h2>
-            <ul>
-                <li><strong>Respect Everyone:</strong> Treat your fellow schoolmates with respect. No harassment, bullying, or hate speech.</li>
-                <li><strong>No Griefing:</strong> Do not destroy or modify builds that do not belong to you without permission.</li>
-                <li><strong>No Cheating:</strong> The use of hacked clients, x-ray mods, or exploits to gain an unfair advantage is strictly prohibited.</li>
-                <li><strong>Keep it School-Appropriate:</strong> Chat and builds must remain appropriate for a school environment.</li>
-            </ul>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 ScieCraft Network. Maintained by the Student Administration.</p>
-    </footer>
+    <div class="scroll-down">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+    </div>
 
     <script>
-        function copyText(elementId) {
-            const textToCopy = document.getElementById(elementId).innerText.replace("IP: ", "").replace("\nPort: ", ":");
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert("IP copied to clipboard!");
+        // Simple function to copy the IP when they click Play Now
+        function copyIP() {
+            const serverIP = "play.sciecraft.edu"; // Change this to your real IP
+            navigator.clipboard.writeText(serverIP).then(() => {
+                alert("Server IP (" + serverIP + ") copied to clipboard!");
             }).catch(err => {
-                console.error('Failed to copy: ', err);
+                console.error('Failed to copy IP: ', err);
             });
         }
     </script>
